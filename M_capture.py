@@ -69,8 +69,8 @@ while(True):
         print('keyboard interrupt, quitting')
         break
     
-    if key == ord('s'):
-        filename="spec"+str(n)+".txt"
+    if key == ord('s'):  #write out previously collected spectrum to disk
+        filename="spec"+str(n-1)+".txt"
         s_datetime =  strftime("%Y-%m-%d %H:%M:%S", gmtime())
         try:    
             with open( filename,'w') as output_file:
