@@ -61,7 +61,7 @@ while(True):
     # Display the resulting frame as image
     cv2.imshow('frameROI', f)
 	
-	# the 'q' key quits (focus must be on frameROI window)
+    # the 'q' key quits (focus must be on frameROI window)
     # or 's' save data  (ditto)
     key = cv2.waitKey(1) & 0xFF
 	
