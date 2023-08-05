@@ -1,7 +1,7 @@
 # M-spectrophotometer-capture
-Real time spectrum capture and display using Python/OpenCV/Matplotlib
+# Real time spectrum capture and display using Python/OpenCV/Matplotlib
 
-Interactive program to control and capture spectra from the Thunder Optics M-spectrophotometer.
+Specific application: interactive program to control and capture spectra from the Thunder Optics M-spectrophotometer.
 
 This is a bare-bones Python program intended for aligning optics, with hard-coded options for device selection, wavelength axis scaling, and data file saving.
 It captures a full frame and displays the region of interest (ROI) image using OpenCV, integrated the ROI and displays the captured spectrum as an autoscaled plot using Matplotlib. Developed for Windows 10 using Python 3.11. Modify as you see fit!
