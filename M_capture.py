@@ -22,6 +22,7 @@ vid.set(cv2.CAP_PROP_EXPOSURE, exposure)
 
 # report settings of connected USB camera 
 print('Camera settings')
+print ('backend name',vid.getBackendName())
 print ('auto exposure ',vid.get(cv2.CAP_PROP_AUTO_EXPOSURE))
 print ('width ',vid.get(cv2.CAP_PROP_FRAME_WIDTH))
 print ('height ',vid.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -50,26 +51,26 @@ while(True):
       
     # Capture video frame
     ret, frame = vid.read()
-    if (ret != True):
-	    naks=naks+1
-
+    if not ret:
+        naks=naks+1
+        continue
     # carve out ROI (coordinates are device specific)
     f = np.array(frame[406:434,0:1920,1])
 
     n=n+1
-    print('frame',n, ':', naks) 
+    print('frame',n) 
     # Display the resulting frame as image
     cv2.imshow('frameROI', f)
-	
+    
     # the 'q' key quits (focus must be on frameROI window)
     # or 's' save data  (ditto)
     key = cv2.waitKey(1) & 0xFF
-	
+    
     if key == ord('q'):
         print('keyboard interrupt, quitting')
         break
     
-    if key == ord('s'):  #write out previously collected spectrum to disk
+    if key == ord('s'): #write out previously collected spectrum to disk
         filename="spec"+str(n-1)+".txt"
         s_datetime =  strftime("%Y-%m-%d %H:%M:%S", gmtime())
         try:    
@@ -90,9 +91,13 @@ while(True):
     if spec[0] > 0:
         mp.cla()  #clear plot field
         mp.plot(xs,spec) #plot data
+        mp.suptitle('Frame '+str(n))
         mp.pause(0.1) #pause required for display to appear
+    else:
+        naks = naks+1
 
 # done, release the video object
+print('NAKS =', naks)
 vid.release()
 # destroy windows before exit
 cv2.destroyAllWindows()
