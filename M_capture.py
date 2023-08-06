@@ -62,40 +62,40 @@ while(True):
     now = int(time()*1000)
     print('[',now-start,'] frame',n)
     start = now	
-    # Display the resulting frame as image
-    cv2.imshow('frameROI', f)
-    
-    # the 'q' key quits (focus must be on frameROI window)
-    # or 's' save data  (ditto)
-    key = cv2.waitKey(1) & 0xFF
-    
-    if key == ord('q'):
-        print('keyboard interrupt, quitting')
-        break
-    
-    if key == ord('s'): #write out previously collected spectrum to disk
-        filename="spec"+str(n-1)+".txt"
-        s_datetime =  strftime("%Y-%m-%d %H:%M:%S", gmtime())
-        try:    
-            with open( filename,'w') as output_file:
-                output_file.write(s_datetime+","+str(exposure)+"\n")  #title line with date/GMT/exposure setting
-                for i in range(1920):
-                    sxs = '{:.2f}'.format(xs[i])
-                    line = sxs+","+str(spec[i])+"\n"  #.csv format wavelength, intensity
-                    output_file.write(line)
-                output_file.close()
-                print(">>>" + filename + " written")
-        except EnvironmentError: # parent of IOError, OSError *and* WindowsError where available
-                print ('>>>output file open failure')
-                break
-
     spec = f.sum(axis=0)  #integrate spectrum vertical axis
     #ignore empty return values, which happens with long exposures
     if spec[0] > 0:
+        # Display the resulting frame as image
+        cv2.imshow('frameROI', f)
+        # the 'q' key quits (focus must be on frameROI window)
+        # or 's' save data  (ditto)
+        key = cv2.waitKey(1) & 0xFF
+    
+        if key == ord('q'):
+            print('keyboard interrupt, quitting')
+            break
+        # plot spectrum
         mp.cla()  #clear plot field
         mp.plot(xs,spec) #plot data
         mp.suptitle('Frame '+str(n))
         mp.pause(0.1) #pause required for display to appear
+
+        if key == ord('s'): #write out spectrum to disk
+            key = 0 #once only
+            filename="spec"+str(n)+".txt"
+            s_datetime =  strftime("%Y-%m-%d %H:%M:%S", gmtime())
+            try:    
+                with open( filename,'w') as output_file:
+                    output_file.write(s_datetime+","+str(exposure)+"\n")  #title line with date/GMT/exposure setting
+                    for i in range(1920):
+                        sxs = '{:.2f}'.format(xs[i])
+                        line = sxs+","+str(spec[i])+"\n"  #.csv format wavelength, intensity
+                        output_file.write(line)
+                    output_file.close()
+                    print(">>>" + filename + " written")
+            except EnvironmentError: # parent of IOError, OSError *and* WindowsError where available
+                print ('>>>output file open failure')
+                break
     else:
         naks = naks+1
 
