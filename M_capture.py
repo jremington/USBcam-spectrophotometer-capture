@@ -6,7 +6,7 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as mp 
-from time import gmtime, strftime 
+from time import time, gmtime, strftime 
 
 mp.ion()  #enable interactive mode, nonblocking figures
   
@@ -17,7 +17,7 @@ if not vid.isOpened():
     exit()
  
 #set exposure time (seconds, powers of 2)
-exposure = -1
+exposure = 2
 vid.set(cv2.CAP_PROP_EXPOSURE, exposure)
 
 # report settings of connected USB camera 
@@ -46,6 +46,7 @@ D = -8.266e-9
 for i in range(1920):
     xs[i] = A + B*x[i] + C*x[i]*x[i] + D*x[i]*x[i]*x[i]
 
+start = int(time()*1000)
 # real time spectrum capture and display 
 while(True):
       
@@ -58,7 +59,9 @@ while(True):
     f = np.array(frame[406:434,0:1920,1])
 
     n=n+1
-    print('frame',n) 
+    now = int(time()*1000)
+    print('[',now-start,'] frame',n)
+    start = now	
     # Display the resulting frame as image
     cv2.imshow('frameROI', f)
     
@@ -87,7 +90,7 @@ while(True):
                 break
 
     spec = f.sum(axis=0)  #integrate spectrum vertical axis
-    #ignore empty return values, which sometimes happen
+    #ignore empty return values, which happens with long exposures
     if spec[0] > 0:
         mp.cla()  #clear plot field
         mp.plot(xs,spec) #plot data
