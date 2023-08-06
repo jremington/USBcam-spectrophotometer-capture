@@ -14,6 +14,8 @@ Developed on Windows 10 using Python 3.11. Modify as you see fit!
 4. Interactive options: click on the "frameROI" window to bring it into focus. Typing "q" on the keyboard quits the program. Typing "s" on the keyboard saves the current displayed spectrum as an ASCII text file in .csv format. The first line is date/time/exposure time, following lines are wavelength (nm) and intensity.
 5. Device specific parameters: A, B, C, D are X-axis wavelength calibration constants for a third order polynomial, supplied with each M-spectrophotomter. ROI is also supplied. These constants were determined from the "settings" page in the Acquire menu of the Spectragryph software package, after loading the device specific calibration file.
 
+Suggestions for options are welcome.
+
 Example spectrum display (blue sky, 0.5 second exposure):
 
 ![Capture](https://github.com/jremington/M-spectrophotometer-capture/assets/5509037/a112949e-9c29-420a-9e89-68357478a834)
