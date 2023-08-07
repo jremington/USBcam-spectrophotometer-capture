@@ -19,6 +19,8 @@ if not vid.isOpened():
 #set exposure time (seconds, powers of 2)
 exposure = -1
 vid.set(cv2.CAP_PROP_EXPOSURE, exposure)
+# gain control, if needed
+# vid.set(cvs.CAP_PROP_GAIN, 500)
 
 # report settings of connected USB camera 
 print('Camera settings')
