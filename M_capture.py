@@ -17,7 +17,7 @@ if not vid.isOpened():
     exit()
  
 #set exposure time (seconds, powers of 2)
-exposure = 2
+exposure = -1
 vid.set(cv2.CAP_PROP_EXPOSURE, exposure)
 
 # report settings of connected USB camera 
