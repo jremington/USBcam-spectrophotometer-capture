@@ -12,9 +12,9 @@ Developed on Windows 10 using Python 3.11. Modify as you see fit!
 2. Exposure control: integer power of 2, time in seconds. "0" is 1 second, "-1" is 0.5 seconds, etc.
 3. Gain control: possible, but I don't know the allowable settings range. Gain values of 200 to 1000 seem to work as expected.
 4. Interactive options: click on the "frameROI" window to bring it into focus.
->Typing "q" on the keyboard quits the program.
->Typing "s" on the keyboard saves the current displayed spectrum as an ASCII text file in .csv format. The first line is date/time/exposure/gain, following    lines are wavelength (nm) and intensity.
- >Typing "u" or "d" increases/decreases exposure setting by one stop (one power of two).
+-Typing "q" on the keyboard quits the program.
+-Typing "s" on the keyboard saves the current displayed spectrum as an ASCII text file in .csv format. The first line is date/time/exposure/gain, following    lines are wavelength (nm) and intensity.
+ -Typing "u" or "d" increases/decreases exposure setting by one stop (one power of two).
 6. Device specific parameters: A, B, C, D are X-axis wavelength calibration constants for a third order polynomial, supplied with each M-spectrophotomter. ROI is also supplied. These constants were determined from the "settings" page in the Acquire menu of the Spectragryph software package, after loading the device specific calibration file.
 
 Program installation and execution:
