@@ -19,7 +19,7 @@ if not vid.isOpened():
 #set exposure time (seconds, powers of 2)
 exposure = -1
 vid.set(cv2.CAP_PROP_EXPOSURE, exposure)
-gain =1000
+gain = 500
 vid.set(cv2.CAP_PROP_GAIN, gain)
 
 # report settings of connected USB camera 
@@ -91,7 +91,7 @@ while(True):
             s_datetime =  strftime("%Y-%m-%d %H:%M:%S", gmtime())
             try:    
                 with open( filename,'w') as output_file:
-                    output_file.write(s_datetime+","+str(exposure)+"\n")  #title line with date/GMT/exposure setting
+                    output_file.write(s_datetime+","+str(exposure)+","+str(gain)+"\n")  #title line with date/GMT/exposure setting
                     for i in range(1920):
                         sxs = '{:.2f}'.format(xs[i])
                         line = sxs+","+str(spec[i])+"\n"  #.csv format wavelength, intensity
