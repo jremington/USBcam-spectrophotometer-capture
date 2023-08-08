@@ -25,7 +25,7 @@ The source will need to be edited to reflect camera specific parameters and the 
 
 At the command prompt, type `python3 M_capture.py`
 
-Suggestions for options are welcome!
+Suggestions for options are welcome.
 
 Example spectrum display (blue sky, 0.5 second exposure):
 
