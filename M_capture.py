@@ -19,9 +19,8 @@ if not vid.isOpened():
 #set exposure time (seconds, powers of 2)
 exposure = -1
 vid.set(cv2.CAP_PROP_EXPOSURE, exposure)
-# gain control, if needed. 200-1000 seem to work as expected
-gain = 500
-vid.set(cvs.CAP_PROP_GAIN, gain)
+gain =1000
+vid.set(cv2.CAP_PROP_GAIN, gain)
 
 # report settings of connected USB camera 
 print('Camera settings')
@@ -63,49 +62,61 @@ while(True):
     spec = f.sum(axis=0)  #integrate spectrum vertical axis
 
     #ignore empty return values, which happens with long exposures
-    if spec[0] == 0:
-        naks=naks+1
-        continue  # skip this one
+    if spec[0] > 0:
+        n=n+1
+        now = int(time()*1000)
+        print('[',now-start,'] frame',n)
+        start = now
+        
+        # Display the resulting frame as image
+        cv2.imshow('frameROI', f)
 
-    n=n+1
-    now = int(time()*1000)
-    print('[',now-start,'] frame',n)
-    start = now
-
-    # Display the ROI as image
-    cv2.imshow('frameROI', f)
-    # the 'q' key quits (focus must be on frameROI window)
-    # or 's' save data  (ditto)
-    key = cv2.waitKey(1) & 0xFF
+        # the 'q' key quits (focus must be on frameROI window)
+        # or 's' save data  (ditto)
+        key = cv2.waitKey(1) & 0xFF
     
-    if key == ord('q'):
-        print('keyboard interrupt, quitting')
-        break
-    
-    # plot spectrum
-    mp.cla()  #clear plot field
-    mp.plot(xs,spec) #plot data
-    mp.suptitle('Frame '+str(n))
-    mp.pause(0.1) #pause required for display to appear
-
-    if key == ord('s'): #write out spectrum to disk
-        key = 0 #once only
-        filename="spec"+str(n)+".txt"
-        s_datetime =  strftime("%Y-%m-%d %H:%M:%S", gmtime())
-        try:    
-            with open( filename,'w') as output_file:
-                output_file.write(s_datetime+","+str(exposure)+","+str(gain)+"\n")  #title line with date/GMT/exposure/gain setting
-                for i in range(1920):
-                    sxs = '{:.2f}'.format(xs[i])
-                    line = sxs+","+str(spec[i])+"\n"  #.csv format wavelength, intensity
-                    output_file.write(line)
-                output_file.close()
-                print(">>>" + filename + " written")
-        except EnvironmentError: # parent of IOError, OSError *and* WindowsError where available
-            print ('>>>output file open failure')
+        if key == ord('q'):
+            print('keyboard interrupt, quitting')
             break
+
+        # plot spectrum
+        mp.cla()  #clear plot field
+        mp.plot(xs,spec) #plot data
+        mp.suptitle('Frame '+str(n))
+        mp.pause(0.1) #pause required for display to appear
+
+        if key == ord('s'): #write out spectrum to disk
+            key = 0 #once only
+            filename="spec"+str(n)+".txt"
+            s_datetime =  strftime("%Y-%m-%d %H:%M:%S", gmtime())
+            try:    
+                with open( filename,'w') as output_file:
+                    output_file.write(s_datetime+","+str(exposure)+"\n")  #title line with date/GMT/exposure setting
+                    for i in range(1920):
+                        sxs = '{:.2f}'.format(xs[i])
+                        line = sxs+","+str(spec[i])+"\n"  #.csv format wavelength, intensity
+                        output_file.write(line)
+                    output_file.close()
+                    print(">>>" + filename + " written")
+            except EnvironmentError: # parent of IOError, OSError *and* WindowsError where available
+                print ('>>>output file open failure')
+                break
+    else:
+        naks = naks+1
+
+    #interactive exposure adjustment
+    if key == ord('u'):
+        exposure = exposure+1
+        vid.set(cv2.CAP_PROP_EXPOSURE, exposure)
+        print(">>> exposure",exposure)
+    if key == ord('d'):
+        exposure = exposure-1
+        vid.set(cv2.CAP_PROP_EXPOSURE, exposure)
+        print(">>> exposure",exposure)
+    key = 0  #clear command
+
 # done, release the video object
-print('NAKS =', naks)
+print('Empty frames: ', naks)  #report number of empty image frames
 vid.release()
 # destroy windows before exit
 cv2.destroyAllWindows()
