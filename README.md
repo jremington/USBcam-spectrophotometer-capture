@@ -19,6 +19,7 @@ Program installation and execution:
 Install Python3, version 9 or greater, Python versions of OpenCV and Matplotlib.
 On Windows 10, command line execution is best performed after setting default to a folder containing the M_capture.py source.
 The source will need to be edited to reflect camera specific parameters and the video capture device number.
+
 At the command prompt, type `python3 M_capture.py`
 
 Suggestions for options are welcome!
