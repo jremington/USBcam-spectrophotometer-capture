@@ -27,6 +27,6 @@ At the command prompt, type `python3 M_capture.py`
 
 Suggestions for options are welcome.
 
-Example spectrum display (blue sky, 0.5 second exposure):
+Example spectrum display (blue sky, 0.5 second exposure, y axis scale is arbitrary):
 
 ![Capture](https://github.com/jremington/M-spectrophotometer-capture/assets/5509037/a112949e-9c29-420a-9e89-68357478a834)
