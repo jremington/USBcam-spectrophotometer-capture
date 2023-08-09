@@ -14,7 +14,7 @@ Developed on Windows 10 using Python 3.11. Modify as you see fit!
 4. Interactive options: click on the "ROI" image window to bring it into focus.
    * Typing "q" on the keyboard quits the program.
    * Typing "s" on the keyboard saves the current displayed spectrum as an ASCII text file in .csv format. The first line is date/time/exposure/gain, following    lines are wavelength (nm) and intensity.
-   * Typing "u" or "d" increases/decreases exposure setting by one stop (one power of two), once. Wait for another frame to be displayed before altering the exposure again.
+   * Typing "u" or "d" increases/decreases exposure setting by one stop (one power of two). Wait for another frame to be displayed before altering the exposure again.
 6. Device specific parameters: A, B, C, D are X-axis wavelength calibration constants for a third order polynomial, supplied with each M-spectrophotomter. ROI is also supplied. These constants were determined from the "settings" page in the Acquire menu of the Spectragryph software package, after loading the device specific calibration file.
 
 ### Program installation and execution:
