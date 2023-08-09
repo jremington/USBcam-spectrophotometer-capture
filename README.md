@@ -1,5 +1,5 @@
 # M-spectrophotometer-capture
-# Real time spectrum capture and display using Python/OpenCV/Matplotlib
+## Real time spectrum capture and display using Python/OpenCV/Matplotlib
 
 ### Specific application: interactive program to control and capture spectra from the Thunder Optics M-spectrophotometer.  See https://thunderoptics.fr/
 
