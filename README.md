@@ -9,7 +9,7 @@ It captures a full frame and displays the region of interest (ROI) image using O
 Developed on Windows 10 using Python 3.11. Modify as you see fit!
 
 1. Device selection: video capture device number has to be determined by experiment, as they are arbitrarily chosen by the OS. "0" or "1" are likely choices.
-2. Exposure control: integer power of 2, time in seconds. "0" is 1 second, "-1" is 0.5 seconds, etc. Contrary to the documentation, 32 second exposures (exposure value "5") are practical and work as expected in low light situations.
+2. Exposure control: integer power of 2, time in seconds. "0" is 1 second, "-1" is 0.5 seconds, etc. Contrary to the Thunder Optics documentation, 32 second exposures (exposure value "5") are practical and work as expected in low light situations.
 3. Gain control: possible, but I don't know the allowable settings range. Gain values of 200 to 1000 seem to work as expected.
 4. Interactive options: click on the "ROI" image window to bring it into focus.
    * Typing "q" on the keyboard quits the program.
