@@ -1,0 +1,5 @@
+#sensor constants and settings for Thunder Optics M-spectrometer 8/7/2023
+gain 300
+exposure 0
+x-scale 360.103489 0.25480527 2.51627e-5 -8.266e-9
+ROI 406 434 0 1920
