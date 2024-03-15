@@ -29,7 +29,8 @@ The source will need to be edited to reflect camera specific parameters and the 
 
 At the command prompt, type `python3 M_capture.py`
 
-Example spectrum display (blue sky, gain 500, 0.5 second exposure, x scale nanometers, y scale integrated counts):
+Example spectrum display (blue sky, gain 500, 0.5 second exposure, x scale nanometers, y scale integrated counts).
+Prominent atmospheric absorption lines are evident, and can be used for calibrating the wavelength scale.
 
 ![Capture](https://github.com/jremington/M-spectrophotometer-capture/assets/5509037/a112949e-9c29-420a-9e89-68357478a834)
 
