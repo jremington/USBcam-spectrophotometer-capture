@@ -1,10 +1,12 @@
-# M-spectrophotometer-capture
+# USB camera spectrophotometer capture
 ## Real time spectrum capture and display using Python/OpenCV/Matplotlib
 
-### Specific application: interactive program to control and capture spectra from the Thunder Optics M-spectrophotometer.  See https://thunderoptics.fr/
+### Specific application: interactive program to control and capture spectra from spectrophotometers with USB camera sensors.
 
 This is a bare-bones Python program intended for aligning optics, with hard-coded options for device selection, wavelength axis scaling, and data file saving.
-It captures a full frame and displays the region of interest (ROI) image using OpenCV, integrates the ROI vertically and displays the captured spectrum as an autoscaled plot, as fast as the data come in from the spectrophotometer.
+It was designed for and tested with the Thunder Optics M-spectrophotomer, but should work with spectrophotometers using any USB camera sensor with a standard interface.
+
+The program captures full frames, displays the region of interest (ROI), integrates the ROI vertically and displays the captured spectrum as an autoscaled plot, as fast as the data come in from the spectrophotometer.
 
 Added 8/25: M_captureF.py expects camera-specific constants to be in file TO_Mcam.dat
 
