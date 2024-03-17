@@ -4,7 +4,7 @@
 ### Specific application: interactive program to control and capture spectra from spectrophotometers with USB camera sensors.
 
 This is a bare-bones Python program intended for aligning optics, with hard-coded options for device selection, wavelength axis scaling, and data file saving.
-It was designed for and tested with the Thunder Optics M-spectrophotomer, but should work with any spectrophotometer containing a USB camera sensor with a standard interface.
+It was designed for and tested with the Thunder Optics M-spectrophotometer, but should work with any spectrophotometer containing a USB camera sensor with a standard interface.
 
 The program captures full frames, displays the region of interest (ROI), integrates the ROI vertically and displays the captured spectrum as an autoscaled plot, as fast as the data come in from the spectrophotometer.
 
